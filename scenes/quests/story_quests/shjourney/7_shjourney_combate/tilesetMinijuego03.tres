@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brnsfo2pejt7i" path="res://assets/first_party/tiles/Void_Tiles_Stars_Level4.png" id="5_4nm4p"]
 [ext_resource type="Texture2D" uid="uid://i6kn63tct6gr" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/tumba 1.png" id="12_44bpk"]
 [ext_resource type="Texture2D" uid="uid://cexg7otw5enpu" path="res://assets/third_party/tiny-swords/Terrain/Water/Foam/Foam.png" id="13_5ltan"]
-[ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png" id="14_xkjit"]
+[ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/llave 1.png" id="14_xkjit"]
 [ext_resource type="Texture2D" uid="uid://bwycwmhn0d3oe" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/puertagrande1.png" id="15_k5ac1"]
 [ext_resource type="Texture2D" uid="uid://ctasbg647ninh" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/bloque_negro v3.png" id="16_kuiyb"]
 [ext_resource type="Texture2D" uid="uid://bxd12veyvwpm2" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/fantasma1/loza1/loza1.png" id="17_lylpu"]

@@ -27,13 +27,18 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_l3irc")
 }, {
-"duration": 8.0,
+"duration": 5.0,
 "texture": SubResource("AtlasTexture_eereg")
 }, {
-"duration": 1.0,
+"duration": 0.01,
 "texture": SubResource("AtlasTexture_qc4c2")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 10.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]

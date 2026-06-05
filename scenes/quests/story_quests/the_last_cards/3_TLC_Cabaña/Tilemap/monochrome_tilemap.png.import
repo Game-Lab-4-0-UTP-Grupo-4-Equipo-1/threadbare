@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsd0vcjforiqd"
-path="res://.godot/imported/estructura1.png-b173b1acbd52a1165224e92fc9e5aadb.ctex"
+uid="uid://050kjquen4ym"
+path="res://.godot/imported/monochrome_tilemap.png-fcb54bc7a8310e04ba38d51f950ec8d4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/mapa3/estructura1.png"
-dest_files=["res://.godot/imported/estructura1.png-b173b1acbd52a1165224e92fc9e5aadb.ctex"]
+source_file="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/monochrome_tilemap.png"
+dest_files=["res://.godot/imported/monochrome_tilemap.png-fcb54bc7a8310e04ba38d51f950ec8d4.ctex"]
 
 [params]
 

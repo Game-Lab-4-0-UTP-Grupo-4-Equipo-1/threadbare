@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3ym5s26iyfm1"
-path="res://.godot/imported/estatuaangel3.png-8fab2ac875f3017cc9fa05f284ddcf65.ctex"
+uid="uid://vlmny8ke4tie"
+path="res://.godot/imported/monochrome_tilemap_packed.png-07964b4748a15b76b91fa48396d7e5a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/mapa3/estatuaangel3.png"
-dest_files=["res://.godot/imported/estatuaangel3.png-8fab2ac875f3017cc9fa05f284ddcf65.ctex"]
+source_file="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/monochrome_tilemap_packed.png"
+dest_files=["res://.godot/imported/monochrome_tilemap_packed.png-07964b4748a15b76b91fa48396d7e5a5.ctex"]
 
 [params]
 

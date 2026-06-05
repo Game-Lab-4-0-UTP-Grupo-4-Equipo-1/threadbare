@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8yn4tog2cnaw"
-path="res://.godot/imported/llave 1.png-45dda26ecbba4818be4b3e20228a8ac6.ctex"
+uid="uid://bt2rrjcc0qkl3"
+path="res://.godot/imported/espiritus1.png-af444b8bd5ab26ea39da4abf64a8f730.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png"
-dest_files=["res://.godot/imported/llave 1.png-45dda26ecbba4818be4b3e20228a8ac6.ctex"]
+source_file="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/espiritus1.png"
+dest_files=["res://.godot/imported/espiritus1.png-af444b8bd5ab26ea39da4abf64a8f730.ctex"]
 
 [params]
 

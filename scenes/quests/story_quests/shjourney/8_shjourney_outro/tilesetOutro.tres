@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://c0k3tk7neh2c0" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/bloquelaberinto2.png" id="20_yjqkn"]
 [ext_resource type="Texture2D" uid="uid://cnmmh3uq7rkla" path="res://assets/third_party/tiny-swords/Terrain/Bridge/Bridge_All.png" id="21_3s4vp"]
 [ext_resource type="Texture2D" uid="uid://dkqm7p88upvap" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/bloquedemadera.png" id="22_sth7t"]
-[ext_resource type="Texture2D" uid="uid://c0s56n45hral8" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/bloque cesped1.png" id="23_6g4r4"]
+[ext_resource type="Texture2D" uid="uid://c0s56n45hral8" path="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/bloque cesped1.png" id="23_6g4r4"]
 [ext_resource type="Texture2D" uid="uid://baqbghvs73s83" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/cesped3.png" id="24_dorxe"]
 [ext_resource type="Texture2D" uid="uid://b62k2fbio8m0y" path="res://scenes/quests/story_quests/shjourney/2_shjourney_intro/TilesIntro/Tree.png" id="24_ngagm"]
 [ext_resource type="Texture2D" uid="uid://c7oht7wudd8wa" path="res://assets/first_party/tiles/Cliff_Tiles.png" id="25_4fefm"]

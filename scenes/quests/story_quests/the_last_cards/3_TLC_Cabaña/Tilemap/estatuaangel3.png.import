@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0s56n45hral8"
-path="res://.godot/imported/bloque cesped1.png-3ee96aaf3547b9198c29b5266b163b78.ctex"
+uid="uid://d3ym5s26iyfm1"
+path="res://.godot/imported/estatuaangel3.png-e9d2c4197e4a1f91bafda4b787e00819.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/bloque cesped1.png"
-dest_files=["res://.godot/imported/bloque cesped1.png-3ee96aaf3547b9198c29b5266b163b78.ctex"]
+source_file="res://scenes/quests/story_quests/the_last_cards/3_TLC_Cabaña/Tilemap/estatuaangel3.png"
+dest_files=["res://.godot/imported/estatuaangel3.png-e9d2c4197e4a1f91bafda4b787e00819.ctex"]
 
 [params]
 
