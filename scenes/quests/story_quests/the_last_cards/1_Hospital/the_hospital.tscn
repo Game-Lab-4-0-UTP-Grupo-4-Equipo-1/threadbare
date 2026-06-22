@@ -359,6 +359,9 @@ collision_mask = 3
 attack_damage = 1
 attack_cooldown = 0.5
 attack_range = 80.0
+repel_range = null
+repel_force = null
+repel_cooldown = null
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1966873835]
 process_mode = 3
