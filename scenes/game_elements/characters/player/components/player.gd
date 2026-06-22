@@ -53,6 +53,14 @@ var hp: int
 @export var attack_cooldown: float = 0.5
 @export var attack_range: float = 80.0
 var can_attack: bool = true
+
+# ------------------------------------------------------------
+# Repeler (empuje en área)
+# ------------------------------------------------------------
+@export var repel_range: float = 200.0          # Radio del área de repulsión
+@export var repel_force: float = 400.0          # Fuerza con que se empuja a los enemigos
+@export var repel_cooldown: float = 2.0         # Tiempo entre repelentes
+var can_repel: bool = true
 # ------------------------------------------------------------
 
 @export_group("Sounds")
@@ -281,6 +289,8 @@ func _on_player_hook_aiming_changed(is_aiming: bool) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack") and can_attack and mode != Mode.DEFEATED:
 		_melee_attack()
+	if event.is_action_pressed("repel") and can_repel and mode != Mode.DEFEATED:
+		_do_repel()
 
 func _melee_attack():
 	can_attack = false
@@ -292,3 +302,19 @@ func _melee_attack():
 				print("Golpe a ", enemy.name)
 	await get_tree().create_timer(attack_cooldown).timeout
 	can_attack = true
+
+# ------------------------------------------------------------
+# Repeler (empuje en área circular)
+# ------------------------------------------------------------
+func _do_repel():
+	can_repel = false
+	var enemigos = get_tree().get_nodes_in_group("enemies")
+	for enemy in enemigos:
+		if enemy.has_method("got_repelled"):
+			var dist = global_position.distance_to(enemy.global_position)
+			if dist <= repel_range and dist > 0.0:
+				var dir = (enemy.global_position - global_position).normalized()
+				enemy.got_repelled(dir)
+	print("Repelente usado")
+	await get_tree().create_timer(repel_cooldown).timeout
+	can_repel = true

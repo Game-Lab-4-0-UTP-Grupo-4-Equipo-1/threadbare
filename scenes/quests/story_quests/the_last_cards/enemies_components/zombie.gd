@@ -27,6 +27,11 @@ var player: Player = null
 var can_attack: bool = true
 var is_repelled: bool = false
 
+# --- Nuevas variables para el área de patrulla ---
+var spawn_center: Vector2 = Vector2.ZERO
+var spawn_half_size: Vector2 = Vector2(400, 300)   # Se sobrescribirá al spawnear
+var is_chasing: bool = false   # true = persigue al jugador, false = vagando
+
 func _ready():
 	buscar_jugador_seguro()
 	add_to_group("enemies")
@@ -62,17 +67,17 @@ func _ready():
 		add_child(repel_timer)
 	repel_timer.timeout.connect(_on_repel_end)
 
-	# Primer objetivo de navegación
+	# Primer objetivo de navegación: si no hay jugador, empezar vagando
 	if player:
-		navigation_agent_2d.target_position = player.global_position
+		actualizar_objetivo_navegacion()
+	else:
+		iniciar_vagabundeo()
 
 func buscar_jugador_seguro():
-	# Buscar el primer nodo de clase Player en el grupo "player" (ignora otros)
 	for nodo in get_tree().get_nodes_in_group("player"):
 		if nodo is Player:
 			player = nodo
 			return
-	# Si no encuentra, busca por clase sin grupo
 	for nodo in get_tree().root.get_children():
 		if nodo is Player:
 			player = nodo
@@ -87,17 +92,26 @@ func _physics_process(_delta):
 		buscar_jugador_seguro()
 		return
 
-	# Si está repelido, solo moverse con la inercia del empuje
 	if is_repelled:
 		move_and_slide()
 		$zombie.global_position = global_position
 		return
 
-	# Comprobar si puede atacar al jugador por proximidad
-	if can_attack and global_position.distance_to(player.global_position) < attack_range:
+	# Verificar si el jugador está dentro del área de spawn
+	var dentro_del_area = _jugador_en_area()
+
+	if dentro_del_area and not is_chasing:
+		is_chasing = true
+		actualizar_objetivo_navegacion()
+	elif not dentro_del_area and is_chasing:
+		is_chasing = false
+		iniciar_vagabundeo()
+
+	# Atacar si está cerca y persiguiendo
+	if is_chasing and can_attack and global_position.distance_to(player.global_position) < attack_range:
 		_deal_damage_to_player()
 
-	# Moverse siempre hacia el siguiente punto del camino
+	# Moverse según el objetivo de navegación
 	var next_point = navigation_agent_2d.get_next_path_position()
 	var direction = global_position.direction_to(next_point)
 	velocity = direction * speed
@@ -107,6 +121,25 @@ func _physics_process(_delta):
 	$zombie.global_position = global_position
 	if direction.x != 0:
 		sprite.flip_h = direction.x < 0
+
+func _jugador_en_area() -> bool:
+	if not player:
+		return false
+	var p = player.global_position
+	return (p.x >= spawn_center.x - spawn_half_size.x and
+			p.x <= spawn_center.x + spawn_half_size.x and
+			p.y >= spawn_center.y - spawn_half_size.y and
+			p.y <= spawn_center.y + spawn_half_size.y)
+
+func actualizar_objetivo_navegacion():
+	if player:
+		navigation_agent_2d.target_position = player.global_position
+
+func iniciar_vagabundeo():
+	# Elegir un punto aleatorio dentro del área de spawn
+	var rand_x = randf_range(spawn_center.x - spawn_half_size.x, spawn_center.x + spawn_half_size.x)
+	var rand_y = randf_range(spawn_center.y - spawn_half_size.y, spawn_center.y + spawn_half_size.y)
+	navigation_agent_2d.target_position = Vector2(rand_x, rand_y)
 
 func _deal_damage_to_player():
 	print("Zombi atacando al jugador ", player.name)
@@ -138,5 +171,11 @@ func _on_repel_end():
 	velocity = Vector2.ZERO
 
 func _on_timer_timeout():
-	if player and is_instance_valid(player):
-		navigation_agent_2d.target_position = player.global_position
+	# Si está vagando y ya llegó al destino, elegir uno nuevo
+	if not is_chasing:
+		if navigation_agent_2d.is_navigation_finished():
+			iniciar_vagabundeo()
+	# Si está persiguiendo, actualizar la posición del jugador
+	else:
+		if player and is_instance_valid(player):
+			navigation_agent_2d.target_position = player.global_position

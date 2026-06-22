@@ -55,7 +55,7 @@ editor/new_file_template="# SPDX-FileCopyrightText: The Threadbare Authors
 [[Hi|Hello|Greetings]], {{player_name}}
 => END
 "
-runtime/balloon_path="uid://dhydhpp43urah"
+runtime/balloon_path="res://scenes/quests/story_quests/the_last_cards/1_Hospital/balloon.tscn"
 editor/translations/update_pot_files_automatically=false
 
 [display]
