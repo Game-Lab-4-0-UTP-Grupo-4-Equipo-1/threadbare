@@ -291,7 +291,7 @@ editor_draw_limits = true
 
 [node name="CollectibleItem" parent="." unique_id=327991066 instance=ExtResource("4_8jnni")]
 position = Vector2(2076, 2524)
-next_scene = "uid://dt3xnvjmp4hv7"
+next_scene = "uid://dtb0dwbbtr3lf"
 item = SubResource("Resource_fu76e")
 collected_dialogue = ExtResource("6_vft5q")
 
@@ -300,9 +300,8 @@ position = Vector2(1502, 1780)
 spawn_interval = 1.0
 spawn_area_half_size = Vector2(390, 890)
 
-[node name="Cinematic" type="Node2D" parent="." unique_id=1789166777 node_paths=PackedStringArray("animation_player")]
+[node name="Cinematic" type="Node2D" parent="." unique_id=1789166777]
 position = Vector2(3, -9)
 script = ExtResource("7_ksx3c")
 dialogue = ExtResource("8_13saj")
-animation_player = NodePath("")
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
