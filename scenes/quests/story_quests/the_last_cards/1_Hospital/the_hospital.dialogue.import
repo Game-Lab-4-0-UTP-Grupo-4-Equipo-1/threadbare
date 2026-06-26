@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cd1ygb3yqn65u"
+path="res://.godot/imported/the_hospital.dialogue-32fca69e4374d02bd3b57b5e3076099e.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/the_last_cards/1_Hospital/the_hospital.dialogue"
+dest_files=["res://.godot/imported/the_hospital.dialogue-32fca69e4374d02bd3b57b5e3076099e.tres"]
+
+[params]
+
+defaults=true

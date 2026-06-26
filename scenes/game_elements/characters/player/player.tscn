@@ -350,20 +350,16 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=296354958 groups=["player", "target_player"]]
-collision_mask = 531
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.017453292
 safe_margin = 1.0
 script = ExtResource("1_g2els")
 speeds = SubResource("Resource_cvb4d")
 sprite_frames = ExtResource("3_4nivu")
-attack_damage = null
-attack_cooldown = null
-attack_range = null
 
 [node name="InputWalkBehavior" type="Node2D" parent="." unique_id=1817340985 node_paths=PackedStringArray("character")]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("2_5lbww")
 speeds = SubResource("Resource_cvb4d")
 character = NodePath("..")
@@ -412,7 +408,6 @@ metadata/_custom_type_script = "uid://bk52qjv58locq"
 
 [node name="PlayerInteraction" type="Node2D" parent="." unique_id=1260226520 node_paths=PackedStringArray("character")]
 unique_name_in_owner = true
-visible = false
 script = ExtResource("3_dqkch")
 character = NodePath("..")
 
@@ -430,13 +425,11 @@ debug_color = Color(0.600391, 0.54335, 0, 0.42)
 
 [node name="PlayerRepel" parent="." unique_id=1324972992 instance=ExtResource("12_tnibl")]
 unique_name_in_owner = true
-visible = false
 light_mask = 2
 position = Vector2(0, -24)
 
 [node name="PlayerHook" parent="." unique_id=1972626703 node_paths=PackedStringArray("character") instance=ExtResource("13_ecbbk")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -20)
 character = NodePath("..")
 

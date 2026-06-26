@@ -39,12 +39,28 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
+	if Engine.is_editor_hint():
+		return
+
+	# Solo calcular el vector si existen las acciones necesarias
+	if not InputMap.has_action(&"move_left") or not InputMap.has_action(&"move_right") \
+		or not InputMap.has_action(&"move_up") or not InputMap.has_action(&"move_down"):
+		return
+
 	var axis := Input.get_vector(&"move_left", &"move_right", &"move_up", &"move_down")
-	var speed := speeds.run_speed if Input.is_action_pressed(&"running") else speeds.walk_speed
+	var speed := speeds.walk_speed
+
+	# Si la acción "running" existe y está presionada, usar velocidad de carrera
+	if InputMap.has_action(&"running") and Input.is_action_pressed(&"running"):
+		speed = speeds.run_speed
+
 	input_vector = axis * speed
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+
 	var step := (
 		speeds.stopping_step
 		if character.velocity.length_squared() > input_vector.length_squared()

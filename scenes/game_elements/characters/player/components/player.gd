@@ -171,6 +171,9 @@ func _ready() -> void:
 	if health_label:
 		health_label.text = "HP|" + str(hp) + "/" + str(max_hp)
 
+	# Asegurarse de que las habilidades se muestren si están registradas en GameState
+	_toggle_abilities()
+
 
 func _set_speeds(new_speeds: CharacterSpeeds) -> void:
 	speeds = new_speeds
@@ -297,6 +300,10 @@ func _on_player_hook_aiming_changed(is_aiming: bool) -> void:
 # Resistencia para correr
 # ------------------------------------------------------------
 func _process(delta: float) -> void:
+	# Evitar errores si la acción no existe (modo editor o proyecto corrupto)
+	if not InputMap.has_action("running"):
+		return
+
 	if mode == Mode.DEFEATED:
 		return
 
@@ -305,14 +312,11 @@ func _process(delta: float) -> void:
 		current_stamina -= stamina_drain_rate * delta
 		if current_stamina < 0.0:
 			current_stamina = 0.0
-		# Permitir velocidad de esprint completa
 		input_walk_behavior.speeds.run_speed = _initial_speeds.run_speed
 	else:
-		# Recuperar stamina si no se corre
 		current_stamina += stamina_regen_rate * delta
 		if current_stamina > max_stamina:
 			current_stamina = max_stamina
-		# Si no hay stamina, limitar la velocidad de correr a la de caminar
 		if current_stamina <= 0.0:
 			input_walk_behavior.speeds.run_speed = _initial_speeds.walk_speed
 		else:
@@ -320,12 +324,18 @@ func _process(delta: float) -> void:
 
 
 # ------------------------------------------------------------
-# Ataque cuerpo a cuerpo (integrado)
+# Ataque cuerpo a cuerpo y Repeler (input)
 # ------------------------------------------------------------
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack") and can_attack and mode != Mode.DEFEATED:
+	# Verificar que las acciones existan para evitar errores en el editor
+	if not InputMap.has_action("attack") or not InputMap.has_action("repel"):
+		return
+
+	if mode != Mode.USER_CONTROLLED:
+		return
+	if event.is_action_pressed("attack") and can_attack:
 		_melee_attack()
-	if event.is_action_pressed("repel") and can_repel and mode != Mode.DEFEATED:
+	if event.is_action_pressed("repel") and can_repel:
 		_do_repel()
 
 func _melee_attack() -> void:

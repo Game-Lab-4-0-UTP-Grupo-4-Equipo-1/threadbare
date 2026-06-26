@@ -17,6 +17,9 @@ signal cinematic_finished
 ## Optional animation player, to be used from [member dialogue] (if needed).
 @export var animation_player: AnimationPlayer
 
+## Optional audio player to play sounds/music from dialogue (e.g., [code][do audio.play()][/code]).
+@export var audio_player: AudioStreamPlayer
+
 ## Optional scene to switch to once [member dialogue] is complete.
 @export_file("*.tscn") var next_scene: String
 
@@ -25,29 +28,46 @@ signal cinematic_finished
 ## leave this blank.
 @export var spawn_point_path: String
 
-## Wether to automatically start the cinematic.
+## Whether to automatically start the cinematic.
 @export var autostart: bool = true
 
 
 func _ready() -> void:
 	if autostart:
+		# Esperamos un frame para asegurar que el nodo está en el árbol de escenas
+		# (por si acaso, aunque normalmente ya lo está).
+		await get_tree().process_frame
 		start()
 
 
 func start() -> void:
 	if not GameState.intro_dialogue_shown:
-		DialogueManager.show_dialogue_balloon(dialogue, "", [self])
+		# Preparamos los estados extras que el diálogo pueda necesitar.
+		var extra_states: Array = [self, GameState]
+		
+		# Si tenemos un AnimationPlayer, lo añadimos como un estado con nombre "animator"
+		if animation_player:
+			extra_states.append({ "animator": animation_player })
+		
+		# Si tenemos un AudioStreamPlayer, lo añadimos como "audio"
+		if audio_player:
+			extra_states.append({ "audio": audio_player })
+		
+		# Mostramos el diálogo pasando todos los estados necesarios.
+		DialogueManager.show_dialogue_balloon(dialogue, "", extra_states)
+		
+		# Esperamos a que termine el diálogo.
 		await DialogueManager.dialogue_ended
+		
+		# Emitimos la señal y marcamos el intro como mostrado.
 		cinematic_finished.emit()
 		GameState.intro_dialogue_shown = true
 
+	# Transición a la siguiente escena si está definida.
 	if next_scene:
-		(
-			SceneSwitcher
-			. change_to_file_with_transition(
-				next_scene,
-				spawn_point_path,
-				Transition.Effect.FADE,
-				Transition.Effect.FADE,
-			)
+		SceneSwitcher.change_to_file_with_transition(
+			next_scene,
+			spawn_point_path,
+			Transition.Effect.FADE,
+			Transition.Effect.FADE,
 		)
