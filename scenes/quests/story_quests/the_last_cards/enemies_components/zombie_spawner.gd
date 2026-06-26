@@ -12,10 +12,10 @@ extends Node2D
 var spawn_timer: Timer
 var total_spawned: int = 0
 
+
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-
 	spawn_timer = $Timer
 	if not spawn_timer:
 		spawn_timer = Timer.new()
@@ -24,30 +24,31 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
 
+
 func _draw() -> void:
 	if not Engine.is_editor_hint():
 		return
-	var rect = Rect2(-spawn_area_half_size, spawn_area_half_size * 2)
+	var rect: Rect2 = Rect2(-spawn_area_half_size, spawn_area_half_size * 2)
 	draw_rect(rect, Color(1, 0, 0, 0.1), true)
 	draw_rect(rect, Color(1, 0, 0, 0.4), false, 2.0)
+
 
 func _on_spawn_timer_timeout() -> void:
 	if not zombie_scene:
 		return
-
 	if total_spawned >= max_zombies:
 		return
 
-	var new_zombie = zombie_scene.instantiate()
-	# --- Pasamos los datos del área ---
+	var new_zombie: Node2D = zombie_scene.instantiate()
+
+	# --- PASAR LOS DATOS DEL ÁREA AL ZOMBI ---
 	new_zombie.spawn_center = global_position
 	new_zombie.spawn_half_size = spawn_area_half_size
 
-	var random_offset = Vector2(
+	var random_offset: Vector2 = Vector2(
 		randf_range(-spawn_area_half_size.x, spawn_area_half_size.x),
 		randf_range(-spawn_area_half_size.y, spawn_area_half_size.y)
 	)
 	new_zombie.global_position = global_position + random_offset
 	get_parent().add_child(new_zombie)
-
 	total_spawned += 1
